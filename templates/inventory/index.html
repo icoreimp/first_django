@@ -1,0 +1,6 @@
+<h3>Items in stock</h3>
+{% for item in items %}
+<a href="{% url 'item_details' item.id %}">
+{{item.title|capfirst}}<br>
+</a>
+{% endfor %}
