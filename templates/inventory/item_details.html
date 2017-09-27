@@ -1,5 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{#{% load avatar_tags %}#}
+
+{% block extrahead %}
+    <title>{{item.title}}</title>
+{% endblock %}
+
+{% block content %}
+
 <a href="{% url 'index' %}">Back to item</a>
 <h3> {{item.title}} </h3>
 <h3> {{item.amount}} currently in stock </h3>
 <h3> Description </h3>
 <p> {{item.description}} <p>
+
+{% endblock %}
