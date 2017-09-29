@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from inventory import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from inventory.views import IndexView, ItemDetailsView, ItemAdd1View, ItemAdd2View, ItemAdd4View, ItemAdd3View
+
 urlpatterns = [
-    url(r'^$',views.index,name='index'),
+    url(r'^$',IndexView.as_view(),name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'item/(?P<id>\d+)/',views.item_details,name='item_details')
+    url(r'item/(?P<id>\d+)/$',ItemDetailsView.as_view(),name='item_details'),
+    url(r'add-item1/$',ItemAdd1View.as_view(),name='item_add1'),
+    url(r'add-item2/$',ItemAdd2View.as_view(),name='item_add2'),
+    url(r'add-item3/$',ItemAdd3View.as_view(),name='item_add3'),
+    url(r'add-item4/$',ItemAdd4View.as_view(),name='item_add4'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
