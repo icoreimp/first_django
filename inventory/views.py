@@ -41,6 +41,13 @@ class IndexView(View):
                       self.template_name,
                       {'items': items})
 
+    def post(self,request):
+        amount = int(request.POST['amount'])
+        items = Item.objects.filter(amount__lte=amount)
+        return render(request,
+                      self.template_name,
+                      {'items': items})
+
 
 class ItemDetailsView(View):
     template_name = 'inventory/item_details.html'
