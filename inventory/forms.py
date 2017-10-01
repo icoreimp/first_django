@@ -36,3 +36,6 @@ class ItemForm3(forms.ModelForm):
         # Provide an association between the ModelForm and a model
         model = Item
         fields = ['title', 'description', 'amount']
+
+class AmountCheckForm(forms.Form):
+    amount = forms.IntegerField(label='Enter amount: ')

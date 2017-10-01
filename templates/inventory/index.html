@@ -16,8 +16,7 @@
     <form action="" method="post">
     {% csrf_token %}
     <div class="form-group">
-        <lebel for="amount">amount for search</lebel>
-        <input type="number" name="amount">
+        {{ form }}
         <input type="submit" name="submit" value="Check">
     </div>
     </form>

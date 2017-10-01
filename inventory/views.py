@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls.base import reverse
 from django.views.generic.base import View
 
-from inventory.forms import ItemForm1, ItemForm2, ItemForm3
+from inventory.forms import ItemForm1, ItemForm2, ItemForm3, AmountCheckForm
 from inventory.models import Item
 
 
@@ -37,16 +37,19 @@ class IndexView(View):
 
     def get(self,request):
         items = Item.objects.all()
+        form = AmountCheckForm()
         return render(request,
                       self.template_name,
-                      {'items': items})
+                      {'items': items, 'form':form})
 
     def post(self,request):
-        amount = int(request.POST['amount'])
+        form = AmountCheckForm(request.POST)
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
         items = Item.objects.filter(amount__lte=amount)
         return render(request,
                       self.template_name,
-                      {'items': items})
+                      {'items': items, 'form':form})
 
 
 class ItemDetailsView(View):
